@@ -15,7 +15,14 @@ const responseFiler = '?fields=name,capital,population,flags,languages';
 function onInputSearch(e) {
   e.preventDefault();
 
-  const formValue = formInputEl.value;
+  const formValue = formInputEl.value.trim();
+
+  if (formValue === '') {
+    counrtyInfoEl.innerHTML = '';
+    listEl.innerHTML = '';
+    return;
+  }
+
   fetchCountries(formValue);
 }
 
@@ -63,9 +70,11 @@ function onUpdateUI(params) {
         return `<span><img src=${country.flags.svg} width="30"/></span><p>${
           country.name.official
         }</p>
-        <ul><li>${country.capital}</li><li>${
+        <ul><li><p>Capital: ${country.capital}</p></li><li><p>Population: ${
           country.population
-        }</li><li>${Object.values(country.languages)}</li></ul>`;
+        }</p></li><li><p>Languages: ${Object.values(country.languages).join(
+          ', '
+        )}</p></li></ul>`;
       })
       .join('');
 
