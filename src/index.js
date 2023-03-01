@@ -1,7 +1,7 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
-import fetchCountries from './fetchCountries';
 import debounce from 'lodash.debounce';
+import fetchCountries from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -44,7 +44,7 @@ function onUpdateUI(countries) {
   if (countries.length > 1) {
     markup = countries
       .map(country => {
-        return `<li class='item'><img class="flag" src=${country.flags.svg} width="30"/><p class="country-name--small">${country.name.official}</p></li>`;
+        return `<li class='item'><img class="flag" src=${country.flags.svg} width="30"/><p class="country-name--small">${country.name.common}</p></li>`;
       })
       .join('');
 
@@ -57,7 +57,7 @@ function onUpdateUI(countries) {
         return `<span><img class="flag" src=${
           country.flags.svg
         } width="30"/></span><p class="country-name--big">${
-          country.name.official
+          country.name.common
         }</p>
         <ul class="country-list"><li class="country-list__item"><p class="country-list__text">Capital: ${
           country.capital
