@@ -1,5 +1,3 @@
-import Notiflix from 'notiflix';
-
 export default function fetchCountries(name) {
   const responseFilter = '?fields=name,capital,population,flags,languages';
 
@@ -10,10 +8,4 @@ export default function fetchCountries(name) {
       }
       return response.json();
     })
-    .then(countries => {
-      return countries;
-    })
-    .catch(error => {
-     return Notiflix.Notify.failure('Oops, there is no country with that name');
-    });
 }
